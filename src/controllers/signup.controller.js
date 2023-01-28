@@ -10,10 +10,10 @@ signuprouter.post('/signup',async(req,res)=>{
     if(alreadyExists){
         return res.json({message:'Email already exists'})
     } 
-    let {name,email,password}= req.body;
+    let {firstName,lastName,email,userName,password}= req.body;
     console.log(req.body)
    const hashedPassword=  bcrypt.hashSync(password, 10);
-    const user= await User.create({name:name,email:email,password:hashedPassword});
+    const user= await User.create({firstName,lastName,email:email,userName,password:hashedPassword});
     return res.status(201).send({message:'User created successfully'})
 })
 module.exports= signuprouter;
