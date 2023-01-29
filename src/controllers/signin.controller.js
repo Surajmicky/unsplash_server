@@ -12,6 +12,7 @@ signinrouter.post('/signin',async(req,res)=>{
     }
     let {email,password}=req.body;
     const correctUser= bcrypt.compareSync(password, registeredUser.password);
+    console.log(correctUser)
     if(correctUser){
         const token = jwt.sign(
             { firstName: registeredUser.firstName,lastName:registeredUser.lastName, email: registeredUser.email },
