@@ -17,7 +17,9 @@ signinrouter.post('/signin',async(req,res)=>{
             { firstName: registeredUser.firstName,lastName:registeredUser.lastName, email: registeredUser.email },
             'unsplash'
           );
-        return  res.send({token:token})
+          let avatar_name= firstName[0]+lastName[0];
+          avatar_name= avatar_name.toUpperCase()
+        return  res.send({token:token,avatar_name})
     }else {
         res.send({message:"something went wrong"})
     }
