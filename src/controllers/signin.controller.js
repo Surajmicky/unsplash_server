@@ -11,7 +11,7 @@ signinrouter.post('/signin',async(req,res)=>{
       return res.json({message:'User not found'});
     }
     let {email,password}=req.body;
-    return res.json({email,password})
+   
     const correctUser= bcrypt.compareSync(password, registeredUser.password);
 
     if(correctUser){
@@ -19,7 +19,7 @@ signinrouter.post('/signin',async(req,res)=>{
             { firstName: registeredUser.firstName,lastName:registeredUser.lastName, email: registeredUser.email },
             'unsplash'
           );
-          let avatar_name= firstName[0]+lastName[0];
+          let avatar_name= registeredUser.firstName[0]+registeredUser.lastName[0];
           avatar_name= avatar_name.toUpperCase()
         return  res.send({token:token,avatar_name})
     }else {
