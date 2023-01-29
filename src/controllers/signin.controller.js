@@ -11,7 +11,7 @@ signinrouter.post('/signin',async(req,res)=>{
       return res.json({message:'User not found'});
     }
     let {email,password}=req.body;
-    return {email,password}
+    return res.json({email,password})
     const correctUser= bcrypt.compareSync(password, registeredUser.password);
 
     if(correctUser){
