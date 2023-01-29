@@ -11,8 +11,9 @@ signinrouter.post('/signin',async(req,res)=>{
       return res.json({message:'User not found'});
     }
     let {email,password}=req.body;
+    return {email,password}
     const correctUser= bcrypt.compareSync(password, registeredUser.password);
-    console.log(correctUser)
+
     if(correctUser){
         const token = jwt.sign(
             { firstName: registeredUser.firstName,lastName:registeredUser.lastName, email: registeredUser.email },
